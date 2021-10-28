@@ -11,6 +11,8 @@ import { Location } from '@angular/common';
   templateUrl: './utenti-dettagli.component.html',
   styleUrls: ['./utenti-dettagli.component.css']
 })
+
+
 export class UtentiDettagliComponent implements OnInit {
 
   @Input() utente!: Utente;

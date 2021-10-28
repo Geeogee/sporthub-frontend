@@ -30,7 +30,6 @@ export class UtentiServiceService {
   }
 
   addNewUser(utente: Utente): Observable<Utente> {
-
     return this.http.post<Utente>("http://localhost:8080/user/add", utente, this.httpOptions);
   }
 
