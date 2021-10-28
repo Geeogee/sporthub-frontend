@@ -10,26 +10,30 @@ import { Utente } from 'src/utente';
 })
 export class UtentiServiceService {
 
-  httpOptions = { 
+  httpOptions = {
     headers: new HttpHeaders(
       { 'Content-Type': 'application/json' }
     ),
   };
 
   constructor(private http: HttpClient) { }
-  
+
   // Ricordare di indicare anche il protocollo http
   // Nella chiamata al server
   // per evitare il CORS 
-  getUtenti(): Observable<Utente[]>{
+  getUtenti(): Observable<Utente[]> {
     return this.http.get<Utente[]>("http://localhost:8080/user/all")
+  }
+
+  getUtente(id: number): Observable<Utente> {
+    return this.http.get<Utente>(`http://localhost:8080/user/${id}`);
   }
 
   addNewUser(utente: Utente): Observable<Utente> {
 
     return this.http.post<Utente>("http://localhost:8080/user/add", utente, this.httpOptions);
   }
-  
+
   deleteUser(utente: Utente): Observable<Utente> {
     return this.http.post<Utente>("http://localhost:8080/user/delete", utente, this.httpOptions);
   }

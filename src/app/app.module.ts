@@ -9,13 +9,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UtentiComponent } from './utenti/utenti.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UtentiDettagliComponent } from './utenti-dettagli/utenti-dettagli.component';
+import { NuovoUtenteComponent } from './nuovo-utente/nuovo-utente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     UtentiComponent,
-    UtentiDettagliComponent
+    UtentiDettagliComponent,
+    NuovoUtenteComponent
     
   ],
   imports: [

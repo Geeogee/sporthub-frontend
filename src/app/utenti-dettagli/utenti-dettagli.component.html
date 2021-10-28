@@ -1,18 +1,19 @@
-
-<button (click)="openUpdateForm()">Modifica</button>
-
-<div *ngIf="showDetails">
+<div>
     <form [formGroup]="detailsCheckout" (ngSubmit)="updateUser()">
-        <label for="name">
-            Name:
-        </label>
-        <input type="text" id="name" formControlName="name">
+        <div>
+            <label for="name">
+                Name:
+            </label>
+            <input type="text" id="name" formControlName="name">
+        </div>
 
-        <label for="lastname">
-            Lastname
-        </label>
-        <input type="text" id="lastname" formControlName="lastname">
+        <div>
+            <label for="lastname">
+                Lastname
+            </label>
+            <input type="text" id="lastname" formControlName="lastname">
+        </div>
 
         <button type="submit">Aggiorna</button>
-    </form> 
+    </form>
 </div>

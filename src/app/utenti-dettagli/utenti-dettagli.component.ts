@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { Utente } from 'src/utente';
 import { EventEmitter } from '@angular/core';
 import { UtentiServiceService } from '../utenti-service.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-utenti-dettagli',
@@ -11,33 +13,37 @@ import { UtentiServiceService } from '../utenti-service.service';
 })
 export class UtentiDettagliComponent implements OnInit {
 
-  userToShowId?: number;
-  showDetails = false;
-  id?: number; // number | undefined
-
   @Input() utente!: Utente;
+
   @Output() refresh = new EventEmitter();
 
+  id!: number;
+
   detailsCheckout = this.formBuilder.group({
-    name : '',
-    lastname : ''
+    name: '',
+    lastname: ''
   });
 
   constructor(
     private formBuilder: FormBuilder,
     private utentiService: UtentiServiceService,
-  ) { 
-
+    private route: ActivatedRoute,
+    private location: Location
+  ) {
   }
 
   ngOnInit(): void {
-    this.id = this.utente.user_id;
-    this.detailsCheckout.get('name')?.setValue(this.utente.first_name);
-    this.detailsCheckout.get('lastname')?.setValue(this.utente.last_name);
+    const routeParams = this.route.snapshot.paramMap;
+    this.id = Number(routeParams.get('userId'));
+    this.getUtente(this.id);
   }
 
-  openUpdateForm(): void {
-    this.showDetails = !this.showDetails;
+  getUtente(id: number): void {
+    this.utentiService.getUtente(id).subscribe(utente => {
+      console.log(utente);
+      this.detailsCheckout.get('name')?.setValue(utente.first_name);
+      this.detailsCheckout.get('lastname')?.setValue(utente.last_name);
+    });
   }
 
   updateUser() {
@@ -52,10 +58,7 @@ export class UtentiDettagliComponent implements OnInit {
     };
 
     this.utentiService.update(user).subscribe(data => {
-      // Emette l'evento di refresh
-      // Dal figlio al padre
-      // Dopo che l'utente viene aggiornato
-      this.refresh.emit();
+      this.location.back();
     });
   }
 
