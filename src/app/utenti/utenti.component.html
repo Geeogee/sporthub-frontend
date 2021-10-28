@@ -1,20 +1,19 @@
-
 <!-- User list -->
 <div class="users-container">
   <div class="user-infos">
-      <ul *ngFor='let utente of utenti'>
-        <li>
-          <strong>Name: </strong>{{utente.first_name}}
-         </li>
-        <li>
-          <strong>Lastname: </strong>{{utente.last_name}}
-        </li>
-        <li>
-          <i class="fas fa-trash-alt" (click)="deleteUser(utente)"></i>
-        <li>
-          <app-utenti-dettagli [utente]="utente" (refresh)="getUtenti()"></app-utenti-dettagli>
-        </li>
-      </ul>
+    <ul *ngFor='let utente of utenti'>
+      <li>
+        <strong>Name: </strong>{{utente.first_name}}
+      </li>
+      <li>
+        <strong>Lastname: </strong>{{utente.last_name}}
+      </li>
+      <li>
+        <i class="fas fa-trash-alt" (click)="deleteUser(utente)"></i>
+      <li>
+        <button [routerLink]="['/detail',utente.user_id]">Modifica</button>
+      </li>
+    </ul>
   </div>
 </div>
 
@@ -32,10 +31,6 @@
     </label>
     <input type="text" id="lastname" formControlName="lastname">
   </div>
-  
+
   <input type="submit" value="Invia">
 </form>
-
-
-
-
