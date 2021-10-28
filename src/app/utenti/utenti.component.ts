@@ -23,24 +23,6 @@ export class UtentiComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
-  onSubmit() {
-
-    let name = this.checkoutForm.get('name')?.value;
-    let lastname = this.checkoutForm.get('lastname')?.value;
-
-    let user: Utente = {
-      "first_name": name,
-      "last_name": lastname
-    };
-
-    this.utentiService.addNewUser(user).subscribe(data => {
-      console.log(data);
-      this.getUtenti();
-    });
-
-    this.checkoutForm.reset();
-  }
-
   ngOnInit(): void {
     this.getUtenti();
     console.log(this.utenti);
@@ -51,16 +33,10 @@ export class UtentiComponent implements OnInit {
   }
 
   deleteUser(user: Utente): void {
-
     this.utentiService.deleteUser(user).subscribe(() => {
       console.log("Utente cancellato");
       this.getUtenti();
     });
-  }
-
-  updateUser(id: any): void {
-    console.log(id);
-
   }
 
 }
