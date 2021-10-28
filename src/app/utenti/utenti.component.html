@@ -12,7 +12,7 @@
         <li>
           <i class="fas fa-trash-alt" (click)="deleteUser(utente)"></i>
         <li>
-          <app-utenti-dettagli [utente]="utente"></app-utenti-dettagli>
+          <app-utenti-dettagli [utente]="utente" (refresh)="getUtenti()"></app-utenti-dettagli>
         </li>
       </ul>
   </div>

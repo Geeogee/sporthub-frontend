@@ -16,7 +16,7 @@ export class UtentiDettagliComponent implements OnInit {
   id?: number; // number | undefined
 
   @Input() utente!: Utente;
-  @Output() notify = new EventEmitter();
+  @Output() refresh = new EventEmitter();
 
   detailsCheckout = this.formBuilder.group({
     name : '',
@@ -37,7 +37,6 @@ export class UtentiDettagliComponent implements OnInit {
   }
 
   openUpdateForm(): void {
-    console.log("aperto" + this.utente.user_id);
     this.showDetails = !this.showDetails;
   }
 
@@ -53,7 +52,10 @@ export class UtentiDettagliComponent implements OnInit {
     };
 
     this.utentiService.update(user).subscribe(data => {
-      console.log(data);
+      // Emette l'evento di refresh
+      // Dal figlio al padre
+      // Dopo che l'utente viene aggiornato
+      this.refresh.emit();
     });
   }
 
