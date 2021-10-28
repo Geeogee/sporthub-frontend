@@ -27,7 +27,6 @@ export class UtentiComponent implements OnInit {
 
     let name = this.checkoutForm.get('name')?.value;
     let lastname = this.checkoutForm.get('lastname')?.value;
-    let flag: number;
 
     let user: Utente = {
       "first_name": name,
@@ -56,10 +55,6 @@ export class UtentiComponent implements OnInit {
       this.getUtenti();
     });
   }
-
-  // test(utente: Utente): void {
-  //   console.log(utente);
-  // }
 
   updateUser(id: any): void {
     console.log(id);

@@ -34,4 +34,8 @@ export class UtentiServiceService {
     return this.http.post<Utente>("http://localhost:8080/user/delete", utente, this.httpOptions);
   }
 
+  update(utente: Utente): Observable<Utente> {
+    return this.http.post<Utente>("http://localhost:8080/user/update", utente, this.httpOptions);
+  }
+
 }

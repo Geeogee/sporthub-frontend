@@ -11,16 +11,17 @@ import { UtentiServiceService } from '../utenti-service.service';
 })
 export class UtentiDettagliComponent implements OnInit {
 
-  detailsCheckout = this.formBuilder.group({
-    first_name: '',
-    last_name: ''
-  });
-
   userToShowId?: number;
   showDetails = false;
+  id?: number; // number | undefined
 
   @Input() utente!: Utente;
   @Output() notify = new EventEmitter();
+
+  detailsCheckout = this.formBuilder.group({
+    name : '',
+    lastname : ''
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,6 +31,9 @@ export class UtentiDettagliComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.utente.user_id;
+    this.detailsCheckout.get('name')?.setValue(this.utente.first_name);
+    this.detailsCheckout.get('lastname')?.setValue(this.utente.last_name);
   }
 
   openUpdateForm(): void {
@@ -37,8 +41,20 @@ export class UtentiDettagliComponent implements OnInit {
     this.showDetails = !this.showDetails;
   }
 
-  test(utente: Utente) {
-    console.log(utente);
+  updateUser() {
+
+    let name = this.detailsCheckout.get('name')?.value;
+    let lastname = this.detailsCheckout.get('lastname')?.value;
+
+    let user: Utente = {
+      "user_id": this.id,
+      "first_name": name,
+      "last_name": lastname
+    };
+
+    this.utentiService.update(user).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
