@@ -1,0 +1,44 @@
+<div>
+    <ul *ngFor='let utente of utenti'>
+      <li>
+        <strong>Name: </strong>{{utente.first_name}}
+       </li>
+      <li>
+        <strong>Lastname: </strong>{{utente.last_name}}
+      </li>
+      <!-- <li>
+        {{ utente.user_id }}
+      </li> -->
+      <li>
+        <i class="fas fa-trash-alt" (click)="deleteUser(utente)"></i>
+      </li>
+      <!-- <li>
+        <button (click)=updateUser(utente.user_id)>Modifica</button>
+      </li> -->
+      <li>
+        <app-utenti-dettagli [utente]="utente"></app-utenti-dettagli>
+      </li>
+    </ul>
+</div>
+
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input type="text" id="name" formControlName="name">
+  </div>
+
+  <div>
+    <label for="lastname">
+      Lastname
+    </label>
+    <input type="text" id="lastname" formControlName="lastname">
+  </div>
+  
+  <input type="submit" value="Invia">
+</form>
+
+
+
+

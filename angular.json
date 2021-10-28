@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "5819ef65-20c0-41e4-9674-6bbcdaf9630a"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sporthub-frontend": {
+    "sporthubFrontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sporthub-frontend",
+            "outputPath": "dist/sporthubFrontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "sporthub-frontend:build:production"
+              "browserTarget": "sporthubFrontend:build:production"
             },
             "development": {
-              "browserTarget": "sporthub-frontend:build:development"
+              "browserTarget": "sporthubFrontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sporthub-frontend:build"
+            "browserTarget": "sporthubFrontend:build"
           }
         },
         "test": {
@@ -102,5 +105,5 @@
       }
     }
   },
-  "defaultProject": "sporthub-frontend"
+  "defaultProject": "sporthubFrontend"
 }
