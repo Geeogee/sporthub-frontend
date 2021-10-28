@@ -11,7 +11,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class UtentiComponent implements OnInit {
 
-  utenti : Utente [] = []; //Lo creo vuoto perchè prima mi serve il servizio;
+  utenti: Utente[] = []; //Lo creo vuoto perchè prima mi serve il servizio;
 
   checkoutForm = this.formBuilder.group({
     name: '',
@@ -33,10 +33,12 @@ export class UtentiComponent implements OnInit {
       "last_name": lastname
     };
 
-    this.utentiService.addNewUser(user).subscribe( data => {
+    this.utentiService.addNewUser(user).subscribe(data => {
       console.log(data);
       this.getUtenti();
     });
+
+    this.checkoutForm.reset();
   }
 
   ngOnInit(): void {
@@ -44,13 +46,13 @@ export class UtentiComponent implements OnInit {
     console.log(this.utenti);
   }
 
-  getUtenti() : void{
-     this.utentiService.getUtenti().subscribe( utenti => this.utenti=utenti);
+  getUtenti(): void {
+    this.utentiService.getUtenti().subscribe(utenti => this.utenti = utenti);
   }
 
   deleteUser(user: Utente): void {
 
-    this.utentiService.deleteUser(user).subscribe( () => {
+    this.utentiService.deleteUser(user).subscribe(() => {
       console.log("Utente cancellato");
       this.getUtenti();
     });
